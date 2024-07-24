@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, FormEvent } from "react";
 import styles from "./SubmitAction.module.css";
 import { PlusCircle } from "@phosphor-icons/react";
 
@@ -9,13 +9,17 @@ interface ISubmitActionProps {
 export function SubmitAction({ addTask }: ISubmitActionProps) {
   const [description, setDescription] = useState("");
 
-  const handleAddTask = () => {
+  function handleAddTask(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (description.trim() === "") {
+      return;
+    }
     addTask(description);
     setDescription("");
-  };
+  }
 
   return (
-    <div className={styles.wrapper}>
+    <form onSubmit={handleAddTask} className={styles.wrapper}>
       <input
         className={styles.input}
         type="text"
@@ -23,10 +27,10 @@ export function SubmitAction({ addTask }: ISubmitActionProps) {
         value={description}
         onChange={(e) => setDescription(e.target.value)}
       />
-      <button type="button" className={styles.button} onClick={handleAddTask}>
+      <button type="submit" className={styles.button}>
         Criar
         <PlusCircle size={20} />
       </button>
-    </div>
+    </form>
   );
 }

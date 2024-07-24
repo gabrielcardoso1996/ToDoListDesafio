@@ -16,9 +16,7 @@ export function CountHeader({ totalTasks, completedTasks }: ICountHeaderProps) {
       </div>
 
       <div className={styles.count}>
-        <h5
-          className={styles.finished}
-        >Concluídas</h5>
+        <h5 className={styles.finished}>Concluídas</h5>
         <div>
           <span>{`${completedTasks} de ${totalTasks}`}</span>
         </div>
