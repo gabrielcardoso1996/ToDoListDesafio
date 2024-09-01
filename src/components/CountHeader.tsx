@@ -1,19 +1,24 @@
 import styles from "./CountHeader.module.css";
 
-export function CountHeader() {
+interface ICountHeaderProps {
+  totalTasks: number;
+  completedTasks: number;
+}
+
+export function CountHeader({ totalTasks, completedTasks }: ICountHeaderProps) {
   return (
     <div className={styles.wrapper}>
       <div className={styles.count}>
         <h5 className={styles.toDo}>Tarefas Criadas</h5>
         <div>
-          <span>0</span>
+          <span>{totalTasks}</span>
         </div>
       </div>
 
       <div className={styles.count}>
-        <h5 className={styles.finishddddd}>Concluídas</h5>
+        <h5 className={styles.finished}>Concluídas</h5>
         <div>
-          <span>2 de 5</span>
+          <span>{`${completedTasks} de ${totalTasks}`}</span>
         </div>
       </div>
     </div>
